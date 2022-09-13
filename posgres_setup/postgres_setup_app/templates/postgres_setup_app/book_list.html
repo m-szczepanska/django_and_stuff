@@ -5,7 +5,7 @@
     <h3><a href="{% url 'book_add' %}">Add new book</a></h3>
     <h3><a href="{% url 'author_add' %}">Add new author</a></h3>
 </header>
-{% for book in books %}
+{% for book in object_list %}
     <article>
         <h2><a href="{% url 'book_details' book_id=book.id %}">{{ book.title }}</a></h2>
         <p>{{ book.author.name|linebreaksbr }}</p>

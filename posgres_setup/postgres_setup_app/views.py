@@ -1,11 +1,12 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import ListView
 
 from postgres_setup_app.models import Author, Book
 from postgres_setup_app.forms import BookForm, AuthorForm
 
-
+# -- FUNCTIONAL VIEW
 # def book_list(request):
 #     if request.method == 'GET':
 #         books = Book.objects.all()
@@ -15,14 +16,30 @@ from postgres_setup_app.forms import BookForm, AuthorForm
 #         {'books': books}
 #     )
 
-class BookListView(View):
-    def get(self, request):
-        books = Book.objects.all()
-        return render(
-            request,
-            'postgres_setup_app/book_list.html',
-            {'books': books}
-        )
+# -- CLASS BASED VIEW
+# class BookListView(View):
+#     def get(self, request):
+#         books = Book.objects.all()
+#         return render(
+#             request,
+#             'postgres_setup_app/book_list.html',
+#             {'books': books}
+#         )
+
+class BookListView(ListView):
+    # model = Book
+    queryset = Book.objects.order_by('title')
+    context_object_name = 'book_list'
+
+
+# def book_details(request, book_id):
+#     if request.method == 'GET':
+#         book = Book.objects.get(id=book_id)
+#     return render(
+#         request,
+#         'postgres_setup_app/book_details.html',
+#         {'book': book}
+#     )
 
 class BookDetailsView(View):
     def get(self, request, book_id):
@@ -33,14 +50,6 @@ class BookDetailsView(View):
             {'book': book}
         )
 
-# def book_details(request, book_id):
-#     if request.method == 'GET':
-#         book = Book.objects.get(id=book_id)
-#     return render(
-#         request,
-#         'postgres_setup_app/book_details.html',
-#         {'book': book}
-#     )
 
 class AuthorListView(View):
     def get(self, request):
