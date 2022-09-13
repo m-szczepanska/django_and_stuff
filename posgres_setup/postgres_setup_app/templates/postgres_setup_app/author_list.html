@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <h1>Authors</h1>
+    <h3><a href="{% url 'book_list' %}">List of books</a></h3>
+</header>
+{% for author in authors %}
+    <article>
+        <h2><a href="{% url 'author_details' author_id=author.id %}">{{ author.name }}</a></h2>
+    </article>
+{% endfor %}
+
+</html>
