@@ -21,7 +21,16 @@ class TestViews(TestCase):
 
     def test_book_list(self):
         response = client.get(f'{BASE_URL}')
-
         for book in self.books:
-            self.assertIn(book, response.context['books'])
+            self.assertIn(book, response.context['object_list'])
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_book_detail(self, pk=1):
+        response = client.get(f'{BASE_URL}/book_detail/{pk}')
+        response_author = response.context['object'].author
+        expected_author = self.books[0].author
+
+        self.assertEqual(expected_author, response_author)
+        self.assertEqual(self.books[0].title, response.context['object'].title)
         self.assertEqual(response.status_code, 200)

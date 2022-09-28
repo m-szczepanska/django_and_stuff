@@ -4,9 +4,9 @@
     <h1>Authors</h1>
     <h3><a href="{% url 'book_list' %}">List of books</a></h3>
 </header>
-{% for author in authors %}
+{% for author in object_list %}
     <article>
-        <h2><a href="{% url 'author_details' author_id=author.id %}">{{ author.name }}</a></h2>
+        <h2><a href="{% url 'author_details' pk=author.id %}">{{ author.name }}</a></h2>
     </article>
 {% endfor %}
 

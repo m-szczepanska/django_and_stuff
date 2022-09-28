@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <h1>Authors & Books</h1>
+</header>
+{% for book in object_list %}
+    <ul>
+        <li><a href="{% url 'book_detail' pk=book.id %}">{{ book.title }}</a></li>
+        <p>{{ book.author.name|linebreaksbr }}</p>
+    </ul>
+{% endfor %}
+<hr>
+<body>
+    <h3><a href="{% url 'book_add' %}">Add new book</a></h3>
+    <h3><a href="{% url 'author_add' %}">Add new author</a></h3>
+    <h3><a href="{% url 'author_list' %}">List of authors</a></h3>
+</body>
+
+</html>

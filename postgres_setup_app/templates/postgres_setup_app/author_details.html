@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <h1>Author details</h1>
+</header>
+    <article>
+        <h2>Author: {{ author.name }}</h2>
+        {% for item in author.author_books %}
+            <h4><li> {{ item.title }}</li><h4/>
+        {% endfor %}
+    </article>
+    <hr>
+    <body>
+        <h3><a href="{% url 'book_add' %}">Add new book</a></h3>
+        <h3><a href="{% url 'author_add' %}">Add new author</a></h3>
+        <h3><a href="{% url 'book_list' %}">List of books</a></h3>
+    </body>
+</html>
