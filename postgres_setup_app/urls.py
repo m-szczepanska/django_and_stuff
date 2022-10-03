@@ -1,7 +1,7 @@
 from django.urls import path
 from postgres_setup_app.views import (BookListView, AuthorListView,
     BookDetailView, AuthorDetailView, BookFormView, AuthorFormView,
-    AuthorDeleteView)
+    AuthorDeleteView, FeedbackFormView)
 
 
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path('book_add', BookFormView.as_view(), name='book_add'),
     path('author_add', AuthorFormView.as_view(), name='author_add'),
     path('author_delete/<int:pk>', AuthorDeleteView.as_view(), name='author_delete'),
+    path("feedback", FeedbackFormView.as_view(), name="feedback"),
 ]

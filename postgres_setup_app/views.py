@@ -6,7 +6,18 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView, DeleteView
 
 from postgres_setup_app.models import Author, Book
-from postgres_setup_app.forms import BookForm, AuthorForm
+from postgres_setup_app.forms import BookForm, AuthorForm, FeedbackForm
+
+
+
+class FeedbackFormView(FormView):
+    template_name = 'postgres_setup_app/feedback.html'
+    form_class = FeedbackForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
 
 
 # -- FUNCTIONAL VIEW
